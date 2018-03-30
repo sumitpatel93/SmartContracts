@@ -10,11 +10,9 @@ if (typeof web3 !== 'undefined')
   {
        
     web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/tPNyqnWI32IepQh2lrMf "));
-  var version = web3.version.network;
-console.log(version);
-version.then(function(result){
+  var info = web3.eth.getBlock(2100);
+console.log(info);
+info.then(function(result){
   console.log(result)
 })
 }
-
-
