@@ -47,7 +47,7 @@ contract Land_Details {
       string new_owner,
     //   string new_email,
     //   string new_streetname,
-    //   string new_city,
+      string new_city,
     //   string new_country,
     //   string new_tehsilOffice,
     //   string new_District,
@@ -78,7 +78,7 @@ contract Land_Details {
         Land.owner = new_owner;
         // Land.email = new_email;
         // Land.streetname = new_streetname;
-        // Land.city = new_city;
+        Land.city = new_city;
         // Land.country = new_country;
         // Land.tehsilOffice = new_tehsilOffice;
         // Land.District = new_District;
@@ -114,9 +114,13 @@ contract Land_Details {
     
     //return the details of land from address
     
-    function getland(address _address) view public returns(string, string, uint256,uint256)  {
+    function getland(address _address) view public returns(string , string, uint256,uint256)  {
         return (land_mapping[_address].owner, land_mapping[_address].District, land_mapping[_address].unitof_measurement , land_mapping[_address].adharNumber);
     }
         
+        
+    function Countland () view public returns       (uint){
+        return land_accounts.length;
+    }    
     
 }
