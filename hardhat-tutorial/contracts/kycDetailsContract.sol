@@ -1,31 +1,34 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 contract kycInfoContract {
-
     struct kycInfo {
-
-        uint kycId;
-        string userName;  
+        string certificateOfIncorporation;
         address userAddress;
-        string kycTimestamp; 
-        bytes kycDetails;
+        string articlesOfAssociation;
+        uint64 taxID;
     }
 
-    mapping(uint => kycInfo ) public kycInformation;
+    mapping(address => kycInfo) public kycInformation;
 
-    function saveKycInformation(uint _kycId, string memory _userName, address _userAddress, string memory _kycTimestamp , bytes memory _kycDetails) public {
-            kycInfo memory kycDetails;
-            kycDetails.kycId = _kycId;
-            kycDetails.userName = _userName;
-            kycDetails.userAddress = _userAddress;
-            kycDetails.kycTimestamp = _kycTimestamp;
-            kycDetails.kycDetails = _kycDetails;
-
-            kycInformation[_kycId] =  kycDetails;
+    function saveKycInformation(
+        string memory _certificateOfIncorporation,
+        address _userAddress,
+        string memory _articlesOfAssociation,
+        uint64 _taxID
+    ) public pure {
+        kycInfo memory kycDetails;
+        kycDetails.certificateOfIncorporation = _certificateOfIncorporation;
+        kycDetails.userAddress = _userAddress;
+        kycDetails.articlesOfAssociation = _articlesOfAssociation;
+        kycDetails.taxID = _taxID;
     }
 
-    function getKycDetailbynumber(uint _kycId) public view returns ( kycInfo memory){
-        return kycInformation[_kycId];
+    function getKycDetailbynumber(address _userAddress)
+        public
+        view
+        returns (kycInfo memory)
+    {
+        return kycInformation[_userAddress];
     }
-
 }
